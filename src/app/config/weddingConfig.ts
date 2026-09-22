@@ -1,89 +1,67 @@
 // ============================================================================
 //  TO'Y TAKLIFNOMASI — MIJOZ SOZLAMALARI (yagona tahrirlanadigan fayl)
-// ----------------------------------------------------------------------------
-//  Yangi mijoz uchun sayt qilish: shu faylni tahrirlang + public/ ичidagi
-//  rasmlarni (wedding1..6.jpg) almashtiring. Boshqa hech qanday kodga
-//  tegish shart emas. To'liq qo'llanma: CLIENT_GUIDE.md faylida.
+//  MIJOZ: Suhrobjon & Rayhona
 // ============================================================================
 
 export interface WeddingContent {
-  // Bosh sahifa (Hero)
-  heroGroom: string;      // Kuyov ismi
-  heroBride: string;      // Kelin ismi
-  heroAnd: string;        // Ismlar orasidagi belgi (odatda "&")
-  heroSubtitle: string;   // Kichik izoh
-  heroDate: string;       // Sana yozuvi (masalan "3–4 Oktabr 2026")
+  heroGroom: string;
+  heroBride: string;
+  heroAnd: string;
+  heroSubtitle: string;
+  heroDate: string;
 
-  // Taklifnoma matni
   invTitle: string;
   invText: string;
-  invClosing: string;     // Imzo (odatda "Kuyov & Kelin")
+  invClosing: string;
 
-  // Ikki tadbir (tafsilotlar + countdown)
-  event1Name: string;     // 1-tadbir nomi (masalan "Qiz bazmi")
-  event1Date: string;     // Ko'rinadigan sana
-  event1Time: string;     // Ko'rinadigan vaqt
-  event2Name: string;     // 2-tadbir nomi (masalan "Nikoh to'yi")
+  event1Name: string;
+  event1Date: string;
+  event1Time: string;
+  event2Name: string;
   event2Date: string;
   event2Time: string;
 
-  // To'yxona / manzil
-  detailsVenueVal: string;  // To'yxona nomi
-  detailsAddress: string;   // Manzil (ko'cha/tuman)
-  mapVenue: string;         // Xarita bo'limidagi to'yxona nomi
-  mapAddress: string;       // Xarita bo'limidagi manzil
+  detailsVenueVal: string;
+  detailsAddress: string;
+  mapVenue: string;
+  mapAddress: string;
 
-  // Sovg'a (agar yoqilgan bo'lsa)
-  giftHolder: string;       // Karta egasi
-  giftBank: string;         // Bank / to'lov tizimi nomi
+  giftHolder: string;
+  giftBank: string;
 }
 
-// Bir nechta to'yxona bo'lsa (masalan qiz bazmi va nikoh alohida joyda),
-// har bir to'yxona uchun shu obyekt ishlatiladi. `venues` bo'sh yoki
-// yo'q bo'lsa — sayt eski (bitta to'yxona) ko'rinishida ishlaydi.
 export interface VenueInfo {
-  label: { uz: string; ru: string };    // Sarlavha — qaysi tadbir (masalan "Qiz bazmi")
-  name: { uz: string; ru: string };     // To'yxona nomi
-  address: { uz: string; ru: string };  // Manzil
-  embed: string;                          // Yandex map-widget iframe src
-  yandexLink: string;                     // Yandex Maps havolasi
-  googleLink: string;                     // Google Maps havolasi
+  label: { uz: string; ru: string };
+  name: { uz: string; ru: string };
+  address: { uz: string; ru: string };
+  embed: string;
+  yandexLink: string;
+  googleLink: string;
 }
 
 export interface WeddingConfig {
-  // Brauzer sahifa nomi (tab)
   siteTitle: string;
-  // Konvert muhridagi monogramma (masalan "S&Z")
   monogram: string;
-
-  // Bir nechta to'yxona (ixtiyoriy). Bo'lsa — xarita bo'limi har bir
-  // to'yxonani bitta sahifada ko'rsatadi, tafsilotlarda esa har tadbir
-  // ostida o'z to'yxonasi yoziladi. Yo'q bo'lsa — pastdagi bitta `map`
-  // va content.mapVenue/mapAddress ishlatiladi.
   venues?: VenueInfo[];
 
-  // Countdown uchun ANIQ sana-vaqt (ISO format: YYYY-MM-DDTHH:mm:ss)
   countdown: {
-    event1: string;  // 1-tadbir (qiz bazmi)
-    event2: string;  // 2-tadbir (nikoh to'yi)
+    event1: string;
+    event2: string;
   };
 
-  // Xarita havolalari
   map: {
-    embed: string;        // Yandex map-widget iframe src
-    yandexLink: string;   // Yandex Maps'da ochish havolasi
-    googleLink: string;   // Google Maps'da ochish havolasi
+    embed: string;
+    yandexLink: string;
+    googleLink: string;
   };
 
-  // Sovg'a (karta) bo'limi
   gift: {
-    enabled: boolean;       // true = bo'lim ko'rinadi, false = yashirin
-    cardNumber: string;     // Ko'rinadigan format: "1234 5678 9012 3456"
-    cardNumberRaw: string;  // Nusxa olinadigan raqam (probelsiz)
-    validity: string;       // Amal qilish muddati (masalan "09/30")
+    enabled: boolean;
+    cardNumber: string;
+    cardNumberRaw: string;
+    validity: string;
   };
 
-  // Ikki tildagi mijoz matnlari
   content: {
     uz: WeddingContent;
     ru: WeddingContent;
@@ -91,82 +69,106 @@ export interface WeddingConfig {
 }
 
 export const weddingConfig: WeddingConfig = {
-  siteTitle: "Sardorbek & Zarifa — To'y taklifnomasi",
-  monogram: 'S&Z',
+  siteTitle: "Suhrobjon & Rayhona — To'y taklifnomasi",
+  monogram: 'S&R',
+
+  // Ikki tadbir — ikki xil to'yxonada
+  venues: [
+    {
+      label: { uz: "Qiz bazmi", ru: "Девичник (Qiz bazmi)" },
+      name: { uz: "«Kohinur» to'yxonasi", ru: "«Kohinur» to'yxonasi" },
+      address: { uz: "G'allaorol tumani", ru: "Галляаральский р-н" },
+      embed:
+        'https://yandex.uz/map-widget/v1/?ll=67.589306%2C40.020046&mode=search&sctx=ZAAAAAgBEAAaKAoSCW3H1F3Z5VBAEavLKQExA0RAEhIJNBE2PL1Shj8Rpdqn4zEDdT8iBgABAgMEBSgKOABAmO8LSAFqAnV6nQHNzMw9oAEAqAEAvQEVXUV%2FwgEMtO%2FDqMQBsIywxtIFggIRR8q7YWxsYW9yb2wgdmlzb2yKAgCSAgCaAgxkZXNrdG9wLW1hcHM%3D&sll=67.590013%2C40.022680&sspn=0.010900%2C0.005131&text=G%CA%BBallaorol%20visol&z=19',
+      yandexLink: 'https://yandex.uz/maps/-/CXEZ6D28',
+      googleLink: 'https://www.google.com/maps/search/?api=1&query=40.020046%2C67.589306',
+    },
+    {
+      label: { uz: "Nikoh to'yi", ru: "Свадьба (Nikoh to'yi)" },
+      name: { uz: "«Beksaroy» to'yxonasi", ru: "«Beksaroy» to'yxonasi" },
+      address: { uz: "G'allaorol tumani", ru: "Галляаральский р-н" },
+      embed:
+        'https://yandex.uz/map-widget/v1/?l=sat&ll=67.600874%2C40.012756&mode=search&oid=131563798995&ol=biz&z=18',
+      yandexLink: 'https://yandex.uz/maps/-/CXEZNLno',
+      googleLink: 'https://www.google.com/maps/search/?api=1&query=40.012756%2C67.600874',
+    },
+  ],
 
   countdown: {
-    event1: '2026-10-03T10:00:00',
-    event2: '2026-10-04T11:00:00',
+    event1: '2026-11-13T11:00:00',
+    event2: '2026-11-14T11:00:00',
   },
 
+  // Bir nechta to'yxona bo'lgani uchun quyidagi bitta `map` ishlatilmaydi,
+  // lekin tuzilma to'liq bo'lishi uchun to'ldirilgan (nikoh to'yxonasi).
   map: {
     embed:
-      'https://yandex.uz/map-widget/v1/?ll=71.837887%2C41.080877&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgo1NTU5MDg4NzQxEk5Pyrt6YmVraXN0b24sIE5hbWFuZ2FuIHZpbG95YXRpLCBDaG9ydG9xLCBNdXN0YXFpbGxpa25pbmcgMjAgeWlsbGlnaSBrb8q7Y2hhc2kiCg0ArY9CFc5SJEI%2C&z=18',
-    yandexLink: 'https://yandex.uz/maps/-/CXERnN1q',
-    googleLink: 'https://www.google.com/maps/search/?api=1&query=41.080877%2C71.837887',
+      'https://yandex.uz/map-widget/v1/?l=sat&ll=67.600874%2C40.012756&mode=search&oid=131563798995&ol=biz&z=18',
+    yandexLink: 'https://yandex.uz/maps/-/CXEZNLno',
+    googleLink: 'https://www.google.com/maps/search/?api=1&query=40.012756%2C67.600874',
   },
 
   gift: {
     enabled: false,
-    cardNumber: '5614 6820 9046 8861',
-    cardNumberRaw: '5614682090468861',
-    validity: '09/30',
+    cardNumber: '',
+    cardNumberRaw: '',
+    validity: '',
   },
 
   content: {
     uz: {
-      heroGroom: 'Sardorbek',
-      heroBride: 'Zarifa',
+      heroGroom: 'Suhrobjon',
+      heroBride: 'Rayhona',
       heroAnd: '&',
       heroSubtitle: "To'yimizga taklif etamiz",
-      heroDate: '3–4 Oktabr 2026',
+      heroDate: '13–14 Noyabr 2026',
 
       invTitle: "Hurmatli va aziz mehmon!",
       invText:
         "Sizni hayotimizdagi eng quvonchli ayyom — nikoh to'yimizga lutfan taklif etamiz. Ushbu baxtli va unutilmas kunimizda sizdek aziz insonlarni yonimizda ko'rish biz uchun ulkan baxt. Tashrifingiz bilan davramizga fayz, quvonchimizga quvonch qo'shasiz degan umiddamiz.",
-      invClosing: "Sardorbek & Zarifa",
+      invClosing: "Suhrobjon & Rayhona",
 
       event1Name: "Qiz bazmi",
-      event1Date: "3-oktabr 2026",
-      event1Time: "10:00",
+      event1Date: "13-noyabr 2026",
+      event1Time: "11:00",
       event2Name: "Nikoh to'yi",
-      event2Date: "4-oktabr 2026",
+      event2Date: "14-noyabr 2026",
       event2Time: "11:00",
 
-      detailsVenueVal: "«20 yillik» to'yxonasi",
-      detailsAddress: "Chortoq, Mustaqillikning 20 yilligi ko'chasi",
-      mapVenue: "«20 yillik» to'yxonasi",
-      mapAddress: "Chortoq, Mustaqillikning 20 yilligi ko'chasi",
+      detailsVenueVal: "«Kohinur» / «Beksaroy» to'yxonalari",
+      detailsAddress: "G'allaorol tumani",
+      mapVenue: "«Beksaroy» to'yxonasi",
+      mapAddress: "G'allaorol tumani",
 
-      giftHolder: "To'xtasinov Doniyorbek",
-      giftBank: "Uzcard",
+      giftHolder: "",
+      giftBank: "",
     },
     ru: {
-      heroGroom: 'Сардорбек',
-      heroBride: 'Зарифа',
+      heroGroom: 'Сухробжон',
+      heroBride: 'Райхона',
       heroAnd: '&',
       heroSubtitle: "Приглашаем вас на нашу свадьбу",
-      heroDate: '3–4 октября 2026',
+      heroDate: '13–14 ноября 2026',
 
       invTitle: "Уважаемый и дорогой гость!",
       invText:
         "От всей души приглашаем вас на самое радостное событие в нашей жизни — нашу свадьбу. Для нас огромное счастье видеть таких дорогих сердцу людей рядом в этот незабываемый день. Надеемся, что своим присутствием вы украсите наш праздник и разделите нашу радость.",
-      invClosing: "Сардорбек & Зарифа",
+      invClosing: "Сухробжон & Райхона",
 
       event1Name: "Девичник (Qiz bazmi)",
-      event1Date: "3 октября 2026",
-      event1Time: "10:00",
+      event1Date: "13 ноября 2026",
+      event1Time: "11:00",
       event2Name: "Свадьба (Nikoh to'yi)",
-      event2Date: "4 октября 2026",
+      event2Date: "14 ноября 2026",
       event2Time: "11:00",
 
-      detailsVenueVal: "«20 yillik» to'yxonasi",
-      detailsAddress: "Чартак, ул. 20-летия Независимости",
-      mapVenue: "«20 yillik» to'yxonasi",
-      mapAddress: "Чартак, ул. 20-летия Независимости",
+      detailsVenueVal: "«Kohinur» / «Beksaroy»",
+      detailsAddress: "Галляаральский р-н",
+      mapVenue: "«Beksaroy» to'yxonasi",
+      mapAddress: "Галляаральский р-н",
 
-      giftHolder: "Тўхтасинов Дониёрбек",
-      giftBank: "Uzcard",
+      giftHolder: "",
+      giftBank: "",
     },
   },
 };
