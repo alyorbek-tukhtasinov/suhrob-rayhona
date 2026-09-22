@@ -88,9 +88,9 @@ export const weddingConfig: WeddingConfig = {
       name: { uz: "«Beksaroy» to'yxonasi", ru: "«Beksaroy» to'yxonasi" },
       address: { uz: "G'allaorol tumani", ru: "Галляаральский р-н" },
       embed:
-        'https://yandex.uz/map-widget/v1/?l=sat&ll=67.600874%2C40.012756&mode=search&oid=131563798995&ol=biz&z=18',
-      yandexLink: 'https://yandex.uz/maps/-/CXEZNLno',
-      googleLink: 'https://www.google.com/maps/search/?api=1&query=40.012756%2C67.600874',
+        'https://yandex.uz/map-widget/v1/?ll=67.603026%2C40.012510&z=17',
+      yandexLink: 'https://yandex.uz/maps/?ll=67.603026%2C40.012510&z=17',
+      googleLink: 'https://www.google.com/maps/search/?api=1&query=40.012510%2C67.603026',
     },
   ],
 
@@ -103,9 +103,9 @@ export const weddingConfig: WeddingConfig = {
   // lekin tuzilma to'liq bo'lishi uchun to'ldirilgan (nikoh to'yxonasi).
   map: {
     embed:
-      'https://yandex.uz/map-widget/v1/?l=sat&ll=67.600874%2C40.012756&mode=search&oid=131563798995&ol=biz&z=18',
-    yandexLink: 'https://yandex.uz/maps/-/CXEZNLno',
-    googleLink: 'https://www.google.com/maps/search/?api=1&query=40.012756%2C67.600874',
+      'https://yandex.uz/map-widget/v1/?ll=67.603026%2C40.012510&z=17',
+    yandexLink: 'https://yandex.uz/maps/?ll=67.603026%2C40.012510&z=17',
+    googleLink: 'https://www.google.com/maps/search/?api=1&query=40.012510%2C67.603026',
   },
 
   gift: {
